@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-class Header extends Component {
+class HeaderAdmin extends Component {
     render() {
         return(
             <div>
-                Soy una header
+                Soy una header de administrador
             </div>
         )
     }
 }
 
-export default Header;
+export default HeaderAdmin;
