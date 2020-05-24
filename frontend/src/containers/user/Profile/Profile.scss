@@ -1,0 +1,12 @@
+@import '../../../colors.scss';
+.profileContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5em;
+    .userHeader {
+        display: flex;
+        img {
+            max-width: 20%;
+        }
+    }
+}

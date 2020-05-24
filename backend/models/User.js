@@ -1,47 +1,35 @@
-import mongoose from 'mongoose';
-import bcrypt from "bcrypt";
-const userSchema = new mongoose.Schema({
+const mongoose = require('mongoose');
+const ObjectId = mongoose.Schema.Types.ObjectId;
+const UserSchema = new mongoose.Schema({
     name: String,
     email: {
         type: String,
-        required: true,
         unique: true,
+        required: true
     },
     password: {
         type: String,
         required: true
     },
-    tokens: [],
-    role: {
-        type: String,
-        enum: ['admin', 'customer']
-    }
+    tokens: [String],
+    comments: [{
+        text: String,
+        UserId: {
+            type: ObjectId,
+            ref: 'User'
+        },
+    }],
+    followers: [ObjectId],
+    following: [ObjectId]
 }, {
-    timestamps: true,
-    toJSON: {
-        transform: (doc, ret) => {
-            delete ret.password;
-            delete ret.tokens;
-            return ret
-        }
-    }
+    timestamps: true
 });
-// userSchema.methods.toJSON =function () {
-//     const user = this.toObject();
-//     delete user.password;
-//     delete user.tokens;
-//     return user;
-// }
-userSchema.pre('save', async function(next) {
-    try {
-        const user = this;
-        console.log(user);
-        user.password = await bcrypt.hash(user.password, 9);
-        console.log(user.password);
-    } catch (error) {
-        console.error(error);
-    } finally {
-        next();
-    }
-})
-export default mongoose.model('User', userSchema);
+UserSchema.methods.toJSON = function(params) {
+    const user = this._doc;
+    delete user.tokens;
+    delete user.password;
+    delete user.__v;
+    return user;
+}
+const User = mongoose.model('User', UserSchema);
+module.exports = User;

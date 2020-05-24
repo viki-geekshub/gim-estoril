@@ -1,12 +1,12 @@
-import express from "express";
-const router = express.Router();
-import UserController from "../controllers/UserController.js";
-import * as authMiddlewares from '../middleware/authenticaction.js';
-const { authentication } = authMiddlewares;
+const router = require('express').Router();
+const UserController = require('../controllers/UserController.js');
+const { authentication } = require('../middleware/authenticaction')
 router.get('/', authentication, UserController.getAll);
+router.get('/info', authentication, UserController.getInfo);
+router.get('/follow/:user_id', authentication, UserController.follow);
+router.get('/unfollow/:user_id', authentication, UserController.unfollow);
 router.post('/register', UserController.register);
 router.post('/login', UserController.login);
-router.patch('/', authentication, UserController.update);
-router.delete('/:id', UserController.delete);
+router.get('/logout', authentication, UserController.logout);
 
-export default router;
+module.exports = router;

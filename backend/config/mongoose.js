@@ -1,11 +1,10 @@
 
-import mongoose from 'mongoose';
-
-mongoose.connect('mongodb://localhost:27017/react-mongo', {
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/gim-estoril', {
         useCreateIndex: true,
         useUnifiedTopology: true,
         useFindAndModify: false,
         useNewUrlParser: true
     })
-    .then(() => console.log('Successfully conected to MongoDB'))
-    .catch(error => console.error('Error trying to conect to mongoDB ' + error))
+.then(()=>console.log('Successfully conected to MongoDB'))
+.catch(console.error)

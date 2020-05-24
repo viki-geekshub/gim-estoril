@@ -1,84 +1,142 @@
-import User from "../models/User.js";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-import keys from '../config/keys.js';
+const User = require('../models/User.js');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const {
+    jwt_auth_secret
+} = require('../config/keys');
 const UserController = {
     getAll(req, res) {
         User.find()
-            .then(users => res.send(users))
-            .catch(error => {
-                console.error(error);
-                res.status(500).send(error)
-            })
+            .populate('followers')
+            .populate('following')
+            .then(users => res.send({ users, user: req.user }))
+            .catch(console.error)
     },
-    register(req, res) {
-        req.body.role = 'customer' //forzamos al role a ser customer
-        User.create(req.body)
-            .then(user => res.status(201).send(user))
-            .catch(error => {
-                console.error(error);
-                res.status(500).send(error)
+    async register(req, res) {
+        try {
+            req.body.password = await bcrypt.hash(req.body.password, 9)
+            const user = await User.create(req.body);
+            res.status(201).send({
+                user,
+                message: 'Usuario creado con éxito'
             })
+        } catch (error) {
+            console.error(error)
+            res.status(500).send({
+                message: 'Hubo un problema al intentar registrar al usuario',
+                error
+            })
+        }
+    },
+    getInfo(req, res) {
+        User.findById(req.user._id)
+            .populate('followers')
+            .populate('following')
+            .then((user) => res.send(user))
+            .catch(console.error);
+    },
+    async follow(req, res) {
+        try {
+            const isSameUser = req.params.user_id === '' + req.user._id;
+            const isAlreadyFollowingUser = req.user.following.includes(req.params.user_id);
+            let user = req.user;
+            if (!isAlreadyFollowingUser && !isSameUser) {
+                user = await User.findByIdAndUpdate(req.user._id, {
+                    $push: {
+                        following: req.params.user_id
+                    }
+                }, {
+                    new: true
+                });
+                console.log(user.following)
+                await User.findByIdAndUpdate(req.params.user_id, {
+                    $push: {
+                        followers: req.user._id
+                    }
+                });
+            }
+            console.log(user.following)
+            res.send(user)
+        } catch (error) {
+            console.log(error);
+            res.status(500).send({
+                message: 'There was a problem trying to follow'
+            })
+        }
+    },
+    async unfollow(req, res) {
+        try {
+            const isSameUser = req.params.user_id === '' + req.user._id;
+            const isAlreadyFollowingUser = req.user.following.includes(req.params.user_id);
+            let user = req.user;
+            if (isAlreadyFollowingUser && !isSameUser) {
+                user = await User.findByIdAndUpdate(req.user._id, {
+                    $pull: {
+                        following: req.params.user_id
+                    }
+                }, {
+                    new: true
+                });
+                console.log(user.following)
+                await User.findByIdAndUpdate(req.params.user_id, {
+                    $pull: {
+                        followers: req.user._id
+                    }
+                });
+            }
+            console.log(user.following)
+            res.send(user)
+        } catch (error) {
+            console.log(error);
+            res.status(500).send({
+                message: 'There was a problem trying to unfollow'
+            })
+        }
     },
     async login(req, res) {
         try {
             const user = await User.findOne({
                 email: req.body.email
-            })
+            });
             if (!user) {
-                res.status(400).send({
-                    message: 'Wrong credentials'
-                });
+                return res.status(400).send({
+                    message: 'Email o contraseña incorrectos'
+                })
             }
             const isMatch = await bcrypt.compare(req.body.password, user.password);
             if (!isMatch) {
-                res.status(400).send({
-                    message: 'Wrong credentials'
-                });
+                return res.status(400).send({
+                    message: 'Email o contraseña incorrectos'
+                })
             }
             const token = jwt.sign({
                 _id: user._id
-            }, keys.jwt_auth_secret, {
-                expiresIn: '2y'
-            });
-            await User.findByIdAndUpdate(user._id, {
-                $push: {
-                    tokens: token
-                }
-            });
-            res.json({
+            }, jwt_auth_secret);
+            if (user.tokens.length > 4) user.tokens.shift();
+            user.tokens.push(token);
+            await user.replaceOne(user);
+            res.send({
                 user,
                 token,
-                message: 'Welcome Mr. ' + user.email
-            });
+                message: 'Conectado con éxito'
+            })
         } catch (error) {
             console.error(error)
             res.status(500).send({
-                message: 'There was a problem trying to log in'
+                message: 'Hubo un problema al intentar conectar al usuario'
             })
         }
     },
-    async update(req, res) {
-        try {
-            if (req.body.password) {
-                req.body.password = await bcrypt.hash(req.body.password, 9);
-            }
-            User.findByIdAndUpdate(req.params.id, req.body, {
-                    new: true
-                })
-                .then(user => res.send(user))
-        } catch (error) {
-            console.error(error);
-            res.status(500).send(error)
-        }
-    },
-    delete(req, res) {
-        User.findByIdAndDelete(req.params.id)
-            .then(user => res.send(user))
+    logout(req, res) {
+        User.findByIdAndUpdate(req.user._id, { $pull: { tokens: req.headers.authorization } })
+            .then(() => res.send({ message: 'Desconectado con éxito' }))
             .catch(error => {
-                console.error(error);
-                res.status(500).send(error)
+                console.error(error)
+                res.status(500).send({
+                    message: 'Hubo un problema al intentar conectar al usuario'
+                })
             })
     }
 }
-export default UserController;
+
+module.exports = UserController;
