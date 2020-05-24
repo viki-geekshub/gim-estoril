@@ -20,6 +20,7 @@ export const getAllPosts = async(page = 0) => {
     }
 }
 export const insert = async(post) => {
+    console.log(localStorage.getItem('authToken'));
     await axios.post(API_URL + 'posts', post, {
         headers: {
             Authorization: localStorage.getItem('authToken')

@@ -14,7 +14,7 @@ import User from './containers/user/User/User';
 import PostList from './containers/post/Posts/PostList';
 import UserList from './containers/user/Users/UserList';
 import Instalaciones from './containers/instalaciones/Instalaciones';
-import ClasesHorarios from './containers/clasesHorarios/ClasesHorarios';
+import Actividades from './containers/actividades/Actividades';
 import PreciosOfertas from './containers/preciosOfertas/PreciosOfertas';
 import Home from './containers/home/Home';
 import Contacto from './containers/contacto/Contacto';
@@ -35,7 +35,7 @@ function App() {
           <Route path='/nuestrahistoria' component={NuestraHistoria} exact />
           <Route path='/dondeestamos' component={DondeEstamos} exact />
           <Route path='/instalaciones' component={Instalaciones} exact />
-          <Route path='/claseshorarios' component={ClasesHorarios} exact />
+          <Route path='/actividades' component={Actividades} exact />
           <Route path='/preciosofertas' component={PreciosOfertas} exact />
           <Route path='/home' component={Home} exact />
           <Route path='/contacto' component={Contacto} exact />

@@ -8,10 +8,9 @@ const Header = props => {
     <NavLink to='/home' exact>Inicio</NavLink>
     <NavLink to='/nuestrahistoria' exact>Nuestra Historia</NavLink>
     <NavLink to='/dondeestamos' exact>Donde Estamos</NavLink>
-    <NavLink to='/claseshorarios' exact>Clases y Horarios</NavLink>
+    <NavLink to='/actividades' exact>Clases y Horarios</NavLink>
     <NavLink to='/preciosofertas' exact>Precios y Ofertas</NavLink>
     <NavLink to='/instalaciones' exact>Instalaciones</NavLink>
-    <NavLink to='/postlist' exact>Foro</NavLink>
     <NavLink to='/contacto' exact>Contáctanos</NavLink>
    
 
@@ -20,10 +19,12 @@ const Header = props => {
             <NavLink to='/login' exact>Conectar</NavLink>
             <NavLink to='/register' exact>Registro</NavLink>
             </div> : props.user.role === "admin" ? <div className="userAdmin">
+            <NavLink to='/postlist' exact>Foro</NavLink>
             <NavLink to='/users' exact>Usuarios</NavLink>
             <NavLink to='/profile' exact>{props.user.name}</NavLink>
             <button className="logout" onClick={logout}>Desconectar</button>
             </div> : <div className="userZone">
+            <NavLink to='/postlist' exact>Foro</NavLink>
             <NavLink to='/profile' exact>{props.user.name}</NavLink>
             <button className="logout" onClick={logout}>Desconectar</button>
                 
