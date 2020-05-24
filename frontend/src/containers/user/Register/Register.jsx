@@ -10,7 +10,8 @@ const Register = props => {
         const user ={
             name:event.target.name.value,
             email:event.target.email.value,
-            password:event.target.password.value
+            password:event.target.password.value,
+            role: "user"
         }
         register(user).then(res => {
             notification.success({message:'Register',description:res.data.message})

@@ -4,7 +4,7 @@ import { follow, unfollow } from '../../../redux/actions/users';
 const User = ({ user, myUser }) => {
     const isAlreadyFollowed = myUser?.following.includes(user._id);
     return (<div className="user">
-        <img src="https://cdn.pixabay.com/photo/2016/03/31/19/58/avatar-1295429_960_720.png" alt="" />
+        <img src="https://w7.pngwing.com/pngs/122/453/png-transparent-computer-icons-user-profile-avatar-female-profile-heroes-head-woman.png" alt="" />
         <div className="userDatos">
             <span>{user.name}</span>
             <span>{user.email}</span>

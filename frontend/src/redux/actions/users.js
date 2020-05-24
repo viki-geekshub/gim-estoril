@@ -77,5 +77,6 @@ export const logout = async() => {
     store.dispatch({
         type: 'LOGOUT'
     })
+    window.location.assign("/home");
     return res;
 }
