@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const PORT = process.env.PORT || 3001;
 const usersRouter = require('./routes/users');
 const postsRouter = require('./routes/posts');
+const actividadesRouter = require ('./routes/actividades');
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
@@ -16,4 +17,5 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/users', usersRouter);
 app.use('/posts', postsRouter);
+app.use('/actividades', actividadesRouter);
 app.listen(PORT, () => console.log('server running on port: ' + PORT));
