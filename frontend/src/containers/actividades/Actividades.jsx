@@ -5,7 +5,7 @@ const Actividades = () => {
 
         <div>
 
-            <p>Actividades</p>
+            <p>Clases: </p>
 
         </div>
 
