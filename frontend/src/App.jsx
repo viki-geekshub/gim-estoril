@@ -14,9 +14,15 @@ import User from './containers/user/User/User';
 import PostList from './containers/post/Posts/PostList';
 import UserList from './containers/user/Users/UserList';
 import Instalaciones from './containers/instalaciones/Instalaciones';
+<<<<<<< HEAD
 import Actividades from './containers/actividades/Actividades';
 import PreciosOfertas from './containers/preciosOfertas/PreciosOfertas';
 import Home from './containers/home/Home';
+=======
+import ClasesHorarios from './containers/clasesHorarios/clasesHorarios';
+import PreciosOfertas from './containers/preciosOfertas/preciosOfertas';
+import Home from './containers/home/home';
+>>>>>>> 0d6ad3d25914f0b40fc13dc6a0f5baf3d74d7ecb
 import Contacto from './containers/contacto/Contacto';
 
 
