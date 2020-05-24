@@ -10,7 +10,10 @@ const UserController = {
             .populate('followers')
             .populate('following')
             .then(users => res.send({ users, user: req.user }))
-            .catch(console.error)
+            .catch(error=>{
+                console.log(error);
+                res.status(500).send({message: 'Hubo error al intentar tramitar la petición.', error})
+            })
     },
     async register(req, res) {
         try {
@@ -60,7 +63,7 @@ const UserController = {
         } catch (error) {
             console.log(error);
             res.status(500).send({
-                message: 'There was a problem trying to follow'
+                message: 'Hubo un problema al intentar seguir a este usuario'
             })
         }
     },
@@ -89,7 +92,7 @@ const UserController = {
         } catch (error) {
             console.log(error);
             res.status(500).send({
-                message: 'There was a problem trying to unfollow'
+                message: 'Hubo un problema al intentar dejar de seguir a este usuario'
             })
         }
     },

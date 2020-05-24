@@ -11,9 +11,9 @@ const PostController = {
                 const pages = Math.ceil(totalPosts / 5);
                 res.send({ posts, pages, totalPosts });
             })
-            .catch(error => {
-                console.error(error)
-                res.status(500).send(error)
+            .catch(error=>{
+                console.log(error);
+                res.status(500).send({message: 'Hubo error al intentar tramitar la petición.', error})
             })
     },
     insert(req, res) {
@@ -22,9 +22,11 @@ const PostController = {
                 user: req.user._id
             })
             .then(post => res.status(201).send(post))
-            .catch(error => {
-                console.error(error)
-                res.status(500).send(error)
+            .catch(error=> {
+                console.log(error);
+                res.status(500).send({
+                    message: 'Ha habido un error al intentar añadir la nueva actividad.'
+                })
             })
     },
     update(req, res) {
@@ -35,17 +37,21 @@ const PostController = {
                 new: true
             })
             .then(post => res.send(post))
-            .catch(error => {
-                console.error(error)
-                res.status(500).send(error)
+            .catch(error=> {
+                console.log(error);
+                res.status(500).send({
+                    message: 'Ha habido un error al intentar eliminar el producto.'
+                })
             })
     },
     delete(req, res) {
         Post.findByIdAndDelete(req.params.post_id)
             .then(post => res.send(post))
-            .catch(error => {
-                console.error(error)
-                res.status(500).send(error)
+            .catch(error=> {
+                console.log(error);
+                res.status(500).send({
+                    message: 'Ha habido un error al intentar eliminar la actividad.'
+                })
             })
     },
     searchByMessage(req, res) {
@@ -55,9 +61,11 @@ const PostController = {
             })
             .populate('user')
             .then(posts => res.send(posts))
-            .catch(error => {
-                console.error(error)
-                res.status(500).send(error)
+            .catch(error=> {
+                console.log(error);
+                res.status(500).send({
+                    message: 'Ha habido un error al tramitar la petición.'
+                })
             })
     },
 
