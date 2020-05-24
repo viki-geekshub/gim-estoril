@@ -1,4 +1,4 @@
-import Actividad from '../models/Actividad.js';
+const Actividad = require('../models/Actividad.js');
 
 const ActividadController = {
     getAll(req, res) {
@@ -11,9 +11,24 @@ const ActividadController = {
                 })
             })
     },
+    searchByName(req, res) {
+        const search = new RegExp(req.params.search, 'i')
+        User.find({
+                message: search
+            })
+            .populate('trainer')
+            .then(users => res.send(users))
+            .catch(error => {
+                console.error(error)
+                res.status(500).send({
+                    message: 'Hubo un problema al procesar su petición'
+                })
+            })
+    },
     insert(req, res) {
         Actividad.create(req.body)
             .then(actividad => res.send(actividad))
+
             .catch(error => {
                 console.error(error)
                 res.status(500).send({
@@ -43,4 +58,4 @@ const ActividadController = {
     }
 }
 
-export default ActividadController
+module.exports = ActividadController;

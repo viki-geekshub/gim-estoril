@@ -1,11 +1,9 @@
-import express from "express";
-const router = express.Router();
-import ActividadController from "../controllers/ActividadController.js";
-import * as authMiddlewares from '../middleware/authenticaction.js';
-const { authentication } = authMiddlewares;
+const router = require('express').Router();
+const ActividadController = require('../controllers/ActividadController.js');
+const { authentication } = require('../middleware/authenticaction.js');
 router.get('/', ActividadController.getAll);
 router.post('/', ActividadController.insert);
 router.patch('/:id', authentication, ActividadController.update);
 router.delete('/:id', ActividadController.delete);
 
-export default router;
+module.exports = router;
