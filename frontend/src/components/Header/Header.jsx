@@ -5,8 +5,14 @@ import './Header.scss';
 import { logout } from '../../redux/actions/users';
 const Header = props => {
     return <header className="header">
-    <NavLink to='/' exact>Home</NavLink>
-        <NavLink to='/users' exact>Users</NavLink>
+    <NavLink to='/home' exact>Home</NavLink>
+    <NavLink to='/nuestrahistoria' exact>Nuestra Historia</NavLink>
+    <NavLink to='/dondeestamos' exact>Donde Estamos</NavLink>
+    <NavLink to='/instalaciones' exact>Instalaciones</NavLink>
+    <NavLink to='/claseshorarios' exact>Clases y Horarios</NavLink>
+    <NavLink to='/preciosofertas' exact>Precios y Ofertas</NavLink>
+    <NavLink to='/postlist' exact>Foro</NavLink>
+    {/* <NavLink to='/users' exact>Users</NavLink> */}
 
         {props.pedro ?
             <div className="userZone">
@@ -15,6 +21,7 @@ const Header = props => {
             </div> : <div className="guestZone">
                 <NavLink to='/login' exact>Login</NavLink>
                 <NavLink to='/register' exact>Register</NavLink>
+                
             </div>}
     </header>
 }

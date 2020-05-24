@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { Skeleton, Pagination } from 'antd';
 import Post from '../Post/Post.jsx';
 import './PostList.scss';
-import gimnasio from '../../../assets/imgs/gimnasio.jpg';
 const Posts = ({ posts }) => {
     const [loading, setLoading] = useState(true);
     const [totalPosts, settotalPosts] = useState(5);
@@ -44,7 +43,7 @@ const Posts = ({ posts }) => {
                 <textarea name="message"></textarea>
                 <button className="primary">Send Post</button>
             </form>
-        <img src={gimnasio}/>        
+             
 
         </div>
     )

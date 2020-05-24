@@ -9,9 +9,14 @@ import Login from './containers/user/Login/Login';
 import Register from './containers/user/Register/Register';
 import Profile from './containers/user/Profile/Profile';
 import NuestraHistoria from './containers/nuestraHistoria/NuestraHistoria';
+import DondeEstamos from './containers/dondeEstamos/DondeEstamos';
 import User from './containers/user/User/User';
 import PostList from './containers/post/Posts/PostList';
 import UserList from './containers/user/Users/UserList';
+import Instalaciones from './containers/instalaciones/Instalaciones';
+import ClasesHorarios from './containers/clasesHorarios/clasesHorarios';
+import PreciosOfertas from './containers/preciosOfertas/preciosOfertas';
+import Home from './containers/home/home';
 
 
 function App() {
@@ -20,13 +25,20 @@ function App() {
       <BrowserRouter>
         <Header />
         <Switch>
-          <Route path='/' component={PostList} exact />
+          <Route path='/postlist' component={PostList} exact />
           <Route path='/login' component={Login} exact />
           <Route path='/register' component={Register} exact />
           <Route path='/profile' component={Profile} exact />
           <Route path='/users' component={UserList} exact />
           <Route path='/user/:id' component={User} exact />
           <Route path='/nuestrahistoria' component={NuestraHistoria} exact />
+          <Route path='/dondeestamos' component={DondeEstamos} exact />
+          <Route path='/instalaciones' component={Instalaciones} exact />
+          <Route path='/claseshorarios' component={ClasesHorarios} exact />
+          <Route path='/preciosofertas' component={PreciosOfertas} exact />
+          <Route path='/home' component={Home} exact />
+          
+          
         </Switch>
       </BrowserRouter>
     </div>
