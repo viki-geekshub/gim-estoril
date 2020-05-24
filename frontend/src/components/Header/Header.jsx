@@ -8,10 +8,11 @@ const Header = props => {
     <NavLink to='/home' exact>Home</NavLink>
     <NavLink to='/nuestrahistoria' exact>Nuestra Historia</NavLink>
     <NavLink to='/dondeestamos' exact>Donde Estamos</NavLink>
-    <NavLink to='/instalaciones' exact>Instalaciones</NavLink>
     <NavLink to='/claseshorarios' exact>Clases y Horarios</NavLink>
     <NavLink to='/preciosofertas' exact>Precios y Ofertas</NavLink>
+    <NavLink to='/instalaciones' exact>Instalaciones</NavLink>
     <NavLink to='/postlist' exact>Foro</NavLink>
+    <NavLink to='/contacto' exact>Contacto</NavLink>
     {/* <NavLink to='/users' exact>Users</NavLink> */}
 
         {props.pedro ?
