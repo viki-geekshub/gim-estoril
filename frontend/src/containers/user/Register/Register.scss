@@ -1,3 +1,5 @@
+// @import '../../colors.scss';
+
 .registerContainer{
     padding: 1.5em;
     display: flex;
@@ -16,6 +18,7 @@
         }
         button{
             width: 50%;
+            background-color: #ff3f00;
         }
     }
 }

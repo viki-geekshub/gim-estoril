@@ -14,22 +14,22 @@ const listaActividades = []
     return (
 
         <Fragment>
-            <h2>Listado de actividades</h2>
-            <tr>
-                <th>Nombre</th>
-                <th>Precio</th>
-                <th>acciones</th>
-
-
-            </tr>
+            <h2>Actividades:</h2>
+           
 
         
         <div className="Actividades">
         
              {props.Actividades?.map(actividad => <div className="actividad" key={actividad._id}>
-                <span className="nombreActividad"><strong>{actividad.name}</strong></span>
                 <img src={actividad.image_path} alt=""/>
-                <span className="precio">{actividad.price} €</span>
+                <span className="nombreActividad"><strong>{actividad.name}</strong></span>
+                <span> => </span>
+                {/* <span className="nombreEntrenador">{actividad.trainer}</span> */}
+                <span className="dias">{actividad.day}</span>
+                <span> => </span>
+                <span className="horario">{actividad.horario}</span>
+                <span> => </span>
+                <span className="precio">{actividad.price} €/mes</span>
                
             </div>)} 
         </div>

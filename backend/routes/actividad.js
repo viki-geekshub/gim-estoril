@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const ActividadController = require('../controllers/ActividadController.js');
-const { authentication } = require('../middleware/authenticaction.js');
+const { authentication } = require('../middleware/authentication.js');
 router.get('/', ActividadController.getAll);
 router.post('/', ActividadController.insert);
 router.patch('/:id', authentication, ActividadController.update);

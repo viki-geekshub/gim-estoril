@@ -13,7 +13,7 @@ const Login = props => {
         }
         login(user)
         .then(res => {
-            notification.success({ message: 'Login', description: res.data.message ,duration:2000})
+            notification.success({ message: 'Login', description: res.data.message})
             setTimeout(() => {
                 props.history.push('/profile');
             }, 2000);

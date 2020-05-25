@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const UserController = require('../controllers/UserController.js');
-const { authentication } = require('../middleware/authenticaction')
+const { authentication } = require('../middleware/authentication');
 router.get('/', authentication, UserController.getAll);
 router.get('/info', authentication, UserController.getInfo);
 router.get('/follow/:user_id', authentication, UserController.follow);

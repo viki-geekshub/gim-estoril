@@ -9,7 +9,7 @@ const Header = props => {
     <NavLink to='/nuestrahistoria' exact>Nuestra Historia</NavLink>
     <NavLink to='/dondeestamos' exact>Donde Estamos</NavLink>
     <NavLink to='/actividades' exact>Clases y Horarios</NavLink>
-    <NavLink to='/preciosofertas' exact>Precios y Ofertas</NavLink>
+    <NavLink to='/ofertas' exact>Ofertas</NavLink>
     <NavLink to='/instalaciones' exact>Instalaciones</NavLink>
     <NavLink to='/contacto' exact>Contáctanos</NavLink>
    
