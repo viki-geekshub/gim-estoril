@@ -5,15 +5,13 @@ import './Header.scss';
 import { logout } from '../../redux/actions/users';
 const Header = props => {
     return <header className="header">
-    <NavLink to='/home' exact><img src="https://static.vecteezy.com/system/resources/previews/000/595/010/non_2x/vector-object-and-icons-for-sport-label-gym-badge-fitness-logo-design.jpg" alt="" className="logo"/></NavLink>
-    <NavLink to='/nuestrahistoria' exact>Nuestra Historia</NavLink>
-    <NavLink to='/dondeestamos' exact>Donde Estamos</NavLink>
-    <NavLink to='/actividades' exact>Clases y Horarios</NavLink>
-    <NavLink to='/ofertas' exact>Ofertas</NavLink>
-    <NavLink to='/instalaciones' exact>Instalaciones</NavLink>
-    <NavLink to='/contacto' exact>Contáctanos</NavLink>
-   
-
+    <NavLink to='/' exact><img src="https://static.vecteezy.com/system/resources/previews/000/595/010/non_2x/vector-object-and-icons-for-sport-label-gym-badge-fitness-logo-design.jpg" alt="" className="logo"/></NavLink>
+    <NavLink to='/history' exact>Nuestra Historia</NavLink>
+    <NavLink to='/location' exact>Donde Estamos</NavLink>
+    <NavLink to='/activities' exact>Clases y Horarios</NavLink>
+    <NavLink to='/offers' exact>Ofertas</NavLink>
+    <NavLink to='/instalations' exact>Instalaciones</NavLink>
+    <NavLink to='/contact' exact>Contacto</NavLink>
         {!props.user ?
             <div className="guestZone">
             <NavLink to='/login' exact>Conectar</NavLink>
@@ -27,7 +25,6 @@ const Header = props => {
             <NavLink to='/postlist' exact>Foro</NavLink>
             <NavLink to='/profile' exact>{props.user.name}</NavLink>
             <button className="logout" onClick={logout}>Desconectar</button>
-                
             </div>}
     </header>
 }

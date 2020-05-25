@@ -16,7 +16,7 @@ import UserList from './containers/user/Users/UserList';
 import Instalaciones from './containers/instalaciones/Instalaciones';
 import Actividades from './containers/actividades/Actividades';
 import Ofertas from './containers/ofertas/Ofertas';
-import Home from './containers/home/Home';
+import Inicio from './containers/inicio/Inicio';
 import Contacto from './containers/contacto/Contacto';
 
 
@@ -26,21 +26,19 @@ function App() {
       <BrowserRouter>
         <Header />
         <Switch>
+          <Route path='/' component={Inicio} exact />
+          <Route path='/history' component={NuestraHistoria} exact />
+          <Route path='/location' component={DondeEstamos} exact />
+          <Route path='/activities' component={Actividades} exact />
+          <Route path='/offers' component={Ofertas} exact />
+          <Route path='/instalations' component={Instalaciones} exact />
+          <Route path='/contact' component={Contacto} exact />
           <Route path='/postlist' component={PostList} exact />
+          <Route path='/users' component={UserList} exact />
+          <Route path='/profile' component={Profile} exact />
+          <Route path='/user/:id' component={User} exact />
           <Route path='/login' component={Login} exact />
           <Route path='/register' component={Register} exact />
-          <Route path='/profile' component={Profile} exact />
-          <Route path='/users' component={UserList} exact />
-          <Route path='/user/:id' component={User} exact />
-          <Route path='/nuestrahistoria' component={NuestraHistoria} exact />
-          <Route path='/dondeestamos' component={DondeEstamos} exact />
-          <Route path='/instalaciones' component={Instalaciones} exact />
-          <Route path='/actividades' component={Actividades} exact />
-          <Route path='/ofertas' component={Ofertas} exact />
-          <Route path='/home' component={Home} exact />
-          <Route path='/contacto' component={Contacto} exact />
-          
-          
         </Switch>
       </BrowserRouter>
     </div>

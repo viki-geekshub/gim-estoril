@@ -18,7 +18,7 @@ export const getAllActividades = async() => {
         type: GET_ALL_ACTIVIDADES,
         payload: res.data
     })
-    return res
+    return res;
 }
 
 

@@ -13,27 +13,27 @@ const Login = props => {
         }
         login(user)
         .then(res => {
-            notification.success({ message: 'Login', description: res.data.message})
+            notification.success({ message: 'Inicio sesión', description: res.data.message})
             setTimeout(() => {
-                props.history.push('/profile');
-            }, 2000);
+                props.history.push('/');
+            }, 1500);
         })
         .catch(()=>{
-            notification.error({ message: 'Login', description: 'Hubo un problema al logearte'})
+            notification.error({ message: 'Inicio sesión', description: 'Hubo un problema al logearte'})
         })
     }
     return (
         <div className="loginContainer">
             <form onSubmit={handleSubmit}>
                 <h2>Login</h2>
-                <TextField type="email" label="email" name="email" placeholder="Introduzca su correo electrónico" />
-                <TextField type="password" label="contraseña" name="password" placeholder="Introduzca su contraseña" />
+                <TextField type="email" label="Email" name="email" placeholder="Introduzca su correo electrónico" />
+                <TextField type="password" label="Contraseña" name="password" placeholder="Introduzca su contraseña" />
                 <Button type="submit" variant="contained" color="primary">
-                    Login
+                    Iniciar sesión
                 </Button>
             </form>
         </div>
     )
 }
 
-export default Login
+export default Login;

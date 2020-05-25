@@ -14,29 +14,29 @@ const Register = props => {
             role: "user"
         }
         register(user).then(res => {
-            notification.success({message:'Register',description:res.data.message})
+            notification.success({message:'Registro',description:res.data.message}) // donde esta esto??
             setTimeout(() => {
                 //this.router.navigate([])
                 props.history.push('/login')
             }, 1500);
         })
         .catch(()=>{
-            notification.error({message:'Register',description:'Hubo un problema al registrarse'})
+            notification.error({message:'Registro',description:'Hubo un problema al registrarse'})
         })
     }
     return (
         <div className="registerContainer">
             <form onSubmit={handleSubmit}>
-                <h2>Register</h2>
+                <h2>Registro:</h2>
                 <TextField type="text" label="Nombre" name="name" placeholder="Introduzca su nombre" />
-                <TextField type="email" label="email" name="email" placeholder="Introduzca su correo electrónico" />
-                <TextField type="password" label="contraseña" name="password" placeholder="Introduzca su contraseña" />
+                <TextField type="email" label="Email" name="email" placeholder="Introduzca su correo electrónico" />
+                <TextField type="password" label="Contraseña" name="password" placeholder="Introduzca su contraseña" />
                 <Button type="submit" variant="contained" color="primary">
-                    Register
-                </Button>
+                    Registrar
+                </Button>  
             </form>
         </div>
     )
 }
-
+// variant??
 export default Register

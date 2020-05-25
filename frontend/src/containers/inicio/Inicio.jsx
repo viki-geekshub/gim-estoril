@@ -1,6 +1,6 @@
 import React from 'react';
 import gimnasio from '../../assets/imgs/gimnasio.jpg';
-import './Home.scss';
+import './Inicio.scss';
 
 const Home = () => {
     return ( 
