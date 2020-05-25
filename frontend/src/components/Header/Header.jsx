@@ -5,7 +5,7 @@ import './Header.scss';
 import { logout } from '../../redux/actions/users';
 const Header = props => {
     return <header className="header">
-    <NavLink to='/home' exact>Inicio</NavLink>
+    <NavLink to='/home' exact><img src="https://static.vecteezy.com/system/resources/previews/000/595/010/non_2x/vector-object-and-icons-for-sport-label-gym-badge-fitness-logo-design.jpg" alt="" className="logo"/></NavLink>
     <NavLink to='/nuestrahistoria' exact>Nuestra Historia</NavLink>
     <NavLink to='/dondeestamos' exact>Donde Estamos</NavLink>
     <NavLink to='/actividades' exact>Clases y Horarios</NavLink>
