@@ -41,7 +41,7 @@ const Posts = ({ posts }) => {
             </Skeleton>
             <form onSubmit={handleSubmit}>
                 <textarea name="message"></textarea>
-                <button className="primary">Send Post</button>
+                <button className="primary">Enviar comentario</button>
             </form>
              
 

@@ -8,7 +8,7 @@ const Profile = ({ user }) => {
                 <div className="userHeader">
                     
                 <img src="https://w7.pngwing.com/pngs/122/453/png-transparent-computer-icons-user-profile-avatar-female-profile-heroes-head-woman.png" alt="" />
-
+                
                 <div className="userData">
                     <span>{user.name}</span>
                 </div>
