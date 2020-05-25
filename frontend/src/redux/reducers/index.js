@@ -11,3 +11,5 @@ const reducer = combineReducers({
     oferta
 })
 export default reducer;
+
+//Este archivo coordina todos los reducers

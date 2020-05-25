@@ -4,7 +4,8 @@ import Button from '@material-ui/core/Button';
 import './Register.scss';
 import { register } from '../../../redux/actions/users';
 import {  notification } from 'antd';
-const Register = props => {
+
+const Register = props => { // le pasamos las props para poder pasarle tambien el historial del navegacion "history" para hacer un redireccionamiento
     const handleSubmit = event =>{
         event.preventDefault();
         const user ={
@@ -13,8 +14,9 @@ const Register = props => {
             password:event.target.password.value,
             role: "user"
         }
-        register(user).then(res => {
-            notification.success({message:'Registro',description:res.data.message}) // donde esta esto??
+        register(user)
+        .then(res => {
+            notification.success({message:'Registro',description:res.data.message}) // res.data.message - viene del backend
             setTimeout(() => {
                 //this.router.navigate([])
                 props.history.push('/login')
@@ -38,5 +40,5 @@ const Register = props => {
         </div>
     )
 }
-// variant??
+
 export default Register

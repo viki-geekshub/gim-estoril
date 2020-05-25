@@ -30,3 +30,8 @@ const Header = props => {
 }
 const mapStateToProps = (state) => ({ user: state.user.user });
 export default connect(mapStateToProps)(Header);
+
+// Otra forma de hacerlo:
+
+// UndoRedo = connect(mapStateToProps, mapDispatchToProps)(UndoRedo)
+// export default UndoRedo
